@@ -31,6 +31,9 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 	private JLabel starshipLable;
 	private JLabel alienshipLable;
 	
+	JLabel[][] alienLabels = new JLabel[5][3];
+	TheAlienship[][] aliens = new TheAlienship[5][3];
+	
 	//container
 	private Container content;
 	
@@ -40,10 +43,13 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		//screen size
 		setSize(GameProperties.SCREEN_WIDTH, GameProperties.SCREEN_HEIGHT);
 		content = getContentPane();
-
+		
+		//background 
 		JLabel background1 = new JLabel(new ImageIcon("bin\\background0.jpg"));
+		background1.setLocation(0, 0);
+		background1.setSize(800, 600);
 
-		add(background1);
+		//add(background1);
 	
 		//add starship
 		mystarship = new TheStartship ();
@@ -54,8 +60,8 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		starshipLable.setIcon(starshipImage);
 		starshipLable.setSize(mystarship.getSpriteW(), mystarship.getSpriteH());
 		starshipLable.setLocation(mystarship.getSpriteX(), mystarship.getSpriteY());
-		background1.add(starshipLable);
-		content.add(background1);
+		content.add(starshipLable);
+		//content.add(background1);
 		starshipLable.setFocusable(false);
 		
 		//add alien ship
@@ -65,21 +71,39 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		myalienship.setAlienshipLabel(alienshipLable);
 		myalienship.setMyStarship(mystarship);//collision
 		myalienship.setSpriteX(100);
-		myalienship.setSpriteY(0);
+		myalienship.setSpriteY(400);
 		alienshipLable.setIcon(alienshipImage);
 		alienshipLable.setSize(myalienship.getSpriteW(), myalienship.getSpriteH());
 		alienshipLable.setLocation(myalienship.getSpriteX(), myalienship.getSpriteY());
-		background1.add(alienshipLable);
-		content.add(background1);
+		//content.add(alienshipLable);
 		
+
 		alienshipLable.setFocusable(false);
 		
-		/*==>add array to content
-		JLabel[] aliens = new JLabel[3];
-		for (int i = 0; i < 3; i++) {
-			aliens[i]= new JLabel(new ImageIcon("bin\\alienNormal.jpg"));
+		//add array to content
+		int startx = 0;
+		int starty = 0;
+		for (int i = 0; i < 5; i++) {
+			startx = 20*i;
+			for (int j =0; j < 3; j++) {
+				starty = 50 * j;
+				aliens[i][j] = new TheAlienship();
+				alienLabels[i][j]= new JLabel(new ImageIcon("bin\\alienNormal.jpg"));
+				aliens[i][j].setAlienshipLabel(alienLabels[i][j]);
+				aliens[i][j].setSpriteX(startx + 60*i);
+				aliens[i][j].setSpriteY(starty);
+				alienLabels[i][j].setSize(aliens[i][j].getSpriteW(), aliens[i][j].getSpriteH());
+				alienLabels[i][j].setLocation(aliens[i][j].getSpriteX(), aliens[i][j].getSpriteY());	
+				
+				//aliens.set X, Y
+				//alienLabels setLocation
+				content.add(alienLabels[i][j]);
+			}
 		}
-		content.add(aliens);*/
+		//content.add(background1);
+		content.add(background1);
+		
+		//
 		
 		
 		//alien array

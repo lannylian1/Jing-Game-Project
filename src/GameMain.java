@@ -1,3 +1,4 @@
+import java.awt.Button;
 import java.awt.Container;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -31,8 +33,10 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 	private JLabel starshipLable;
 	private JLabel alienshipLable;
 	
-	JLabel[][] alienLabels = new JLabel[5][3];
-	TheAlienship[][] aliens = new TheAlienship[5][3];
+	private JLabel[][] alienLabels = new JLabel[5][3];
+	private TheAlienship[][] aliens = new TheAlienship[5][3];
+	
+	private JButton AnimationButton;
 	
 	//container
 	private Container content;
@@ -48,8 +52,9 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		JLabel background1 = new JLabel(new ImageIcon("bin\\background0.jpg"));
 		background1.setLocation(0, 0);
 		background1.setSize(800, 600);
-
-		//add(background1);
+		
+		//button
+		AnimationButton = new JButton("Start");
 	
 		//add starship
 		mystarship = new TheStartship ();
@@ -61,7 +66,6 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		starshipLable.setSize(mystarship.getSpriteW(), mystarship.getSpriteH());
 		starshipLable.setLocation(mystarship.getSpriteX(), mystarship.getSpriteY());
 		content.add(starshipLable);
-		//content.add(background1);
 		starshipLable.setFocusable(false);
 		
 		//add alien ship
@@ -77,9 +81,13 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		alienshipLable.setLocation(myalienship.getSpriteX(), myalienship.getSpriteY());
 		//content.add(alienshipLable);
 		
+		//move
+		//myalienship.setMove(true);
+		//myalienship.moveAlienship();
+		
 
 		alienshipLable.setFocusable(false);
-		
+
 		//add array to content
 		int startx = 0;
 		int starty = 0;
@@ -94,57 +102,24 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 				aliens[i][j].setSpriteY(starty);
 				alienLabels[i][j].setSize(aliens[i][j].getSpriteW(), aliens[i][j].getSpriteH());
 				alienLabels[i][j].setLocation(aliens[i][j].getSpriteX(), aliens[i][j].getSpriteY());	
-				
-				//aliens.set X, Y
-				//alienLabels setLocation
+
 				content.add(alienLabels[i][j]);
+				alienLabels[i][j].setFocusable(false);
+				aliens[i][j].setMove(true);
+				aliens[i][j].moveAlienship();
 			}
 		}
-		//content.add(background1);
 		content.add(background1);
 		
-		//
+		//add button to screen
 		
+		/*AnimationButton.setLocation(GameProperties.SCREEN_WIDTH -100, GameProperties.SCREEN_HEIGHT -15);
+		AnimationButton.setSize(100, 50);
+		AnimationButton.addActionListener(this);
+		content.add(AnimationButton);
+		AnimationButton.setFocusable(false);*/
 		
-		//alien array
-		/*for (int row = 0; row < 3; row++) {
-			myalienship[row] = new TheAlienship();
-			alienshipImage[row] = new ImageIcon (getClass().getResource(myalienship.getFilename()));
-			alienshipLable[row] = new JLabel();
-			myalienship[row].setAlienshipLabel(alienshipLable);
-			myalienship[row].setMyStarship(mystarship);//collision
-			myalienship[row].setSpriteX(100);
-			myalienship[row].setSpriteY(0);
-			alienshipLable[row].setIcon(alienshipImage);
-			alienshipLable[row].setSize(myalienship.getSpriteW(), myalienship.getSpriteH());
-			alienshipLable[row].setLocation(myalienship.getSpriteX(), myalienship.getSpriteY());
-		}
-		background1.add(alienshipLable);
-		content.add(background1);
-		
-		alienshipLable.setFocusable(false);*/
-		
-		/*
-		aliens = new ArrayList<>();
-		for (int row = 0; row < 3; row++) {
-			for (int col = 0; col <5; col ++) {
-				//var alien = new TheAlienship(GameProperties.ALIEN_INI_X + 10*col,  GameProperties.ALIEN_INI_Y + 10*row);
-				//aliens.add(alien);
-			}
-		}
-		
-		//draw aliens
-		 private void drawAlien(Graphic g) {
-			 for (TheAlienship alien: aliens) {
-			 	if (alien.isVisible()) {
-			 		g.drawImage(alien.getFilename(),alien.getSpriteX(), alien.getSpriteY());
-			 	}
-			 }
-		 }*/
-		
-		
-		
-		//keylistener
+		//key listener
 		content.addKeyListener(this);
 		content.setFocusable(true);
 		
@@ -172,7 +147,11 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		/*if(e.getSource() == AnimationButton) {
+			if (aliens[i][j].getMove()) {
+				
+			}
+		}*/
 		
 	}
 

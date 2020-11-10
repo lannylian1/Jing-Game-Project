@@ -1,3 +1,4 @@
+import java.awt.Image;
 import java.awt.Rectangle;
 
 public class Sprite {
@@ -6,7 +7,7 @@ public class Sprite {
 	protected int spriteX, spriteY; //this represents the upper left corner of sprite
 	protected String filename;
 	protected int spriteH,spriteW;
-	
+	protected Image image;
 	protected Rectangle r;
 	
 	//Define getters and setters, accessors and mutators
@@ -43,6 +44,13 @@ public class Sprite {
 	public void setSpriteW(int spriteW) {
 		this.spriteW = spriteW;
 	}
+	public Image getImage () {
+		return image;
+	}
+	public void setImage (Image image) {
+		this.image = image;
+	}
+	
 	//define default constructor
 	public Sprite() {
 		super();

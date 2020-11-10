@@ -1,13 +1,13 @@
 import javax.swing.JLabel;
 
-public class TheAlienship extends Sprite {
+public class TheAlienship extends Sprite implements Runnable {
 
 	//variables
 	private Boolean move;
 	private Boolean visible;
 	private JLabel alienshipLabel;
 	private TheStartship myStarship;
-	private int hor, ver;
+
 	
 	
 	//add variable to move
@@ -47,14 +47,6 @@ public class TheAlienship extends Sprite {
 		super(0,0,"alienNormal.jpg",60,80);
 		this.move = false; this.visible = true;
 	}
-	//second constructor
-	public TheAlienship (int x, int y) {
-		initAlien(x, y);
-	}
-	private void initAlien(int x, int y) {
-		this.hor =x;
-		this.ver = y;
-	}
 	
 	//show and hide function
 	public void hide () {
@@ -71,7 +63,8 @@ public class TheAlienship extends Sprite {
 	
 	//move alien
 	public void moveAlienship () {
-		t1 = new Thread ("Move Alienship");
+
+		t1 = new Thread (this, "Move Alienship");
 		t1.start();
 	}
 	
@@ -80,6 +73,27 @@ public class TheAlienship extends Sprite {
 		this.move = false;
 	}
 	
-	
+	@Override
+	public void run() {
+
+		while (move) {
+			int x = this.spriteX + GameProperties.CHARACTER_STEP * 2;
+			
+			if (x > GameProperties.SCREEN_WIDTH) {
+				x = -1 * this.spriteW;
+			}
+
+			this.setSpriteX(x);
+			
+			alienshipLabel.setLocation(this.spriteX, this.spriteY);
+			
+			try {
+				Thread.sleep(200);
+			} catch (Exception e) {
+				
+			}
+		}
+		
+	}
 	
 }

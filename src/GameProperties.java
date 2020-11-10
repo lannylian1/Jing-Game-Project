@@ -5,6 +5,4 @@ public class GameProperties {
 	public static final int SCREEN_HEIGHT = 600;
 	public static final int CHARACTER_STEP = 20;
 	
-	public static final int ALIEN_INI_X = 150;
-	public static final int ALIEN_INI_Y = 5;
 }

@@ -1,3 +1,5 @@
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class TheAlienship extends Sprite implements Runnable {
@@ -7,6 +9,10 @@ public class TheAlienship extends Sprite implements Runnable {
 	private Boolean visible;
 	private JLabel alienshipLabel;
 	private TheStartship myStarship;
+	private JButton AnimationButton;
+	private Missile missile;
+	private TheAlienship aliens; 
+	private JLabel alienLabels[][];
 
 	
 	
@@ -20,6 +26,9 @@ public class TheAlienship extends Sprite implements Runnable {
 	}
 	public void setMyStarship (TheStartship temp) {
 		myStarship = temp;
+	}
+	public void setMissile(Missile temp) {
+		missile = temp;
 	}
 	
 	public Boolean getMove () {
@@ -40,6 +49,9 @@ public class TheAlienship extends Sprite implements Runnable {
 	}
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+	public void setAnimationButton (JButton temp) {
+		AnimationButton = temp;
 	}
 	
 	//default constructor
@@ -71,6 +83,22 @@ public class TheAlienship extends Sprite implements Runnable {
 	//stop alien
 	public void stopAlien () {
 		this.move = false;
+		alienshipLabel.setVisible(false);
+		
+	}
+	
+	//function to check Collision
+	private void detectCollision () {
+		if (this.r.intersects( missile.getRectangle())) {
+			
+			//print Boom! to console window if the tardis is visible
+			if (this.visible) {
+				System.out.println("BOOM!");
+				//this.move = false;	
+				this.stopAlien();
+				
+			}
+		}
 	}
 	
 	@Override
@@ -85,6 +113,9 @@ public class TheAlienship extends Sprite implements Runnable {
 
 			this.setSpriteX(x);
 			
+			//update collision detection
+			this.detectCollision();
+			
 			alienshipLabel.setLocation(this.spriteX, this.spriteY);
 			
 			try {
@@ -95,5 +126,10 @@ public class TheAlienship extends Sprite implements Runnable {
 		}
 		
 	}
+	/*@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}*/
 	
 }

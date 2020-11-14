@@ -9,6 +9,8 @@ public class Sprite {
 	protected int spriteH,spriteW;
 	protected Image image;
 	protected Rectangle r;
+	protected boolean visible;
+	protected boolean dying;
 	
 	//Define getters and setters, accessors and mutators
 	public int getSpriteX() {
@@ -51,6 +53,14 @@ public class Sprite {
 		this.image = image;
 	}
 	
+	public void die () {
+		visible = false;
+	}
+	
+	public boolean isDying () {
+		return this.dying;
+	}
+	
 	//define default constructor
 	public Sprite() {
 		super();
@@ -58,6 +68,7 @@ public class Sprite {
 		filename = "";
 		this.spriteH = 0; this.spriteW = 0;
 		this.r = new Rectangle(this.spriteX, this.spriteY, this.spriteW, this.spriteH);
+		this.visible = false;
 	}
 	
 	//define other constructor
@@ -81,5 +92,8 @@ public class Sprite {
 	public Rectangle getRectangle () {
 		return this.r;
 	}
+	
+	//public abstract void move();
+	
 
 }

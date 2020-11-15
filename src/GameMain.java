@@ -128,13 +128,6 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 				alienLabels[i][j].setFocusable(false);
 				aliens[i][j].setMove(true);
 				aliens[i][j].moveAlienship();
-				
-				if (!aliens[i][j].isVisible()) {
-					System.out.println("You Won");
-				}
-
-				
-				
 
 				
 			}
@@ -232,15 +225,13 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 			missile.moveMissile();
 			int missileX = this.mystarship.getSpriteX();
 			int missileY = this.mystarship.getSpriteY();
+			
+			//missile = new Missile(missileX, missileY);
 
-			/*if (!missile.isVisible()) {
+			//missile.setMove(true);
+			//missile.moveMissile();
 
-				//missile = new Missile(missileX, missileY);
-
-				//missile.setMove(true);
-				//missile.moveMissile();
-
-			}*/
+			
 
 			/*if (!missile.isMove()) {
 				//System.out.println(missileY);

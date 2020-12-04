@@ -69,7 +69,7 @@ public class userScore extends JFrame {
 					
 					Class.forName("com.mysql.jdbc.Driver");
 					
-					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/score","homestead","secret");
+					Connection conn = DriverManager.getConnection("dont worry");
 					
 					PreparedStatement ps = conn.prepareStatement("insert into user_score(name,score) values(?,?);");
 					ps.setString(1, txtName.getText());

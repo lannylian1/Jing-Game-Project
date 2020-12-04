@@ -1,4 +1,5 @@
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -32,6 +33,7 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 	private JLabel starshipLable;
 	private JLabel alienshipLable;
 	private JLabel missileLable;
+	private JLabel labelScore;
 	
 	private JLabel[][] alienLabels = new JLabel[5][3];
 	private TheAlienship[][] aliens = new TheAlienship[5][3];
@@ -128,22 +130,29 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 				alienLabels[i][j].setFocusable(false);
 				aliens[i][j].setMove(true);
 				aliens[i][j].moveAlienship();
-
 				
 			}
 		}
-		content.add(background1);
 		
+		//score label
+        //String userScore = Integer.toString(myalienship.getScore());
+        //labelScore = new JLabel("User Score: "+ userScore);
+        //labelScore.setBounds(650, 400, 100, 30);
+        //labelScore.setForeground(Color.RED);
+        //content.add(labelScore); 
+		//myalienship.setContent(content);
+		//labelScore = new JLabel();
+        //myalienship.labelScore.setLocation(650, 400);
+       // labelScore.setForeground(Color.RED);
+        //content.add(myalienship.labelScore);
 		
 		//add button to screen
 		
-		/*AnimationButton.setLocation(GameProperties.SCREEN_WIDTH -100, GameProperties.SCREEN_HEIGHT -15);
-		AnimationButton.setSize(100, 50);
+		AnimationButton.setBounds(600,500,100, 30);
 		AnimationButton.addActionListener(this);
-		
-		AnimationButton.setFocusable(false);
-		
-		content.add(AnimationButton);*/
+		AnimationButton.setFocusable(false);		
+		content.add(AnimationButton);
+		content.add(background1);
 		
 		//key listener
 		content.addKeyListener(this);
@@ -221,6 +230,7 @@ public class GameMain extends JFrame implements KeyListener, ActionListener{
 		
 		//if user press SPACE key, missile shows
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			
 			missile.setMove(true);
 			missile.moveMissile();
 			int missileX = this.mystarship.getSpriteX();

@@ -1,3 +1,5 @@
+import java.awt.Container;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +15,9 @@ public class TheAlienship extends Sprite implements Runnable {
 	private Missile missile;
 	private TheAlienship aliens; 
 	private JLabel alienLabels[][];
+	private static int score=0;
+	public JLabel labelScore = new JLabel("Score Added");
+	public Container content;
 
 	
 	
@@ -21,6 +26,12 @@ public class TheAlienship extends Sprite implements Runnable {
 	
 	
 	//getter and setters
+    public int getScore () {
+        return this.score;
+    }
+    public void setContent(Container content) {
+    	this.content = content;
+    }
 	public void setAlienshipLabel (JLabel temp) {
 		alienshipLabel = temp;	
 	}
@@ -91,12 +102,18 @@ public class TheAlienship extends Sprite implements Runnable {
 	private void detectCollision () {
 		if (this.r.intersects( missile.getRectangle())) {
 			
-			//print Boom! to console window if the tardis is visible
+			//print Boom! to console window if the is visible
 			if (this.visible) {
 				System.out.println("BOOM!");
 				//this.move = false;	
 				this.stopAlien();
-				
+				score+=50;
+				System.out.println(score);
+				//String userScore = Integer.toString(this.getScore());
+				//labelScore = new JLabel("User Score: "+ userScore);
+				labelScore.setText(Integer.toString(score));
+				labelScore.setLocation(650,400);
+				content.add(labelScore);
 			}
 		}
 	}
